@@ -1,0 +1,19 @@
+{
+  "welcomeFile": "/UI5ModuleName/index.html",
+  "authenticationMethod": "route",
+  "logout": {
+    "logoutEndpoint": "/do/logout"
+  },
+  "routes": [
+    {
+      "source": "^/UI5ModuleName/(.*)$",
+      "target": "$1",
+      "localDir": "webapp"
+    },
+    {
+      "source": "^/JavaApp_AR/(.*)$",
+      "destination": "core-node-backend",
+            "authenticationType": "xsuaa"
+    }
+  ]
+}

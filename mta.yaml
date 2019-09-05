@@ -1,0 +1,39 @@
+ID: AddSanToName_AR
+_schema-version: '2.1'
+version: 0.0.1
+modules:
+  - name: JavaApp_AR
+    type: java
+    path: JavaApp_AR
+    parameters:
+      memory: 256M
+    provides:
+      - name: JavaApp_AR_api
+        properties:
+          url: '${default-url}'
+    build-parameters:
+      build-result: 'target/*.jar'
+  - name: UI5ModuleName
+    type: html5
+    path: UI5ModuleName
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+    build-parameters:
+      builder: grunt
+    requires:
+      - name: uaa_AddSanToName_AR
+      - name: dest_AddSanToName_AR
+  
+resources:
+  - name: uaa_AddSanToName_AR
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+    type: org.cloudfoundry.managed-service
+  - name: dest_AddSanToName_AR
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service
